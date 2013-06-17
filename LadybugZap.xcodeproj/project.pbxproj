@@ -19,6 +19,9 @@
 		CDF7D3D2176FA644001DDC00 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3D0176FA644001DDC00 /* MainStoryboard_iPhone.storyboard */; };
 		CDF7D3D5176FA644001DDC00 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3D3176FA644001DDC00 /* MainStoryboard_iPad.storyboard */; };
 		CDF7D3D8176FA644001DDC00 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D3D7176FA644001DDC00 /* ViewController.m */; };
+		CDF7D3E1176FA6BB001DDC00 /* Ladybug.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3DE176FA6BB001DDC00 /* Ladybug.png */; };
+		CDF7D3E2176FA6BB001DDC00 /* LadybugZap.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3DF176FA6BB001DDC00 /* LadybugZap.png */; };
+		CDF7D3E3176FA6BB001DDC00 /* RadarLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		CDF7D3D4176FA644001DDC00 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		CDF7D3D6176FA644001DDC00 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CDF7D3D7176FA644001DDC00 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CDF7D3DE176FA6BB001DDC00 /* Ladybug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ladybug.png; sourceTree = "<group>"; };
+		CDF7D3DF176FA6BB001DDC00 /* LadybugZap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LadybugZap.png; sourceTree = "<group>"; };
+		CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RadarLoop.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 		CDF7D3BF176FA644001DDC00 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */,
+				CDF7D3DE176FA6BB001DDC00 /* Ladybug.png */,
+				CDF7D3DF176FA6BB001DDC00 /* LadybugZap.png */,
 				CDF7D3C0176FA644001DDC00 /* LadybugZap-Info.plist */,
 				CDF7D3C1176FA644001DDC00 /* InfoPlist.strings */,
 				CDF7D3C4176FA644001DDC00 /* main.m */,
@@ -167,6 +176,9 @@
 				CDF7D3CF176FA644001DDC00 /* Default-568h@2x.png in Resources */,
 				CDF7D3D2176FA644001DDC00 /* MainStoryboard_iPhone.storyboard in Resources */,
 				CDF7D3D5176FA644001DDC00 /* MainStoryboard_iPad.storyboard in Resources */,
+				CDF7D3E1176FA6BB001DDC00 /* Ladybug.png in Resources */,
+				CDF7D3E2176FA6BB001DDC00 /* LadybugZap.png in Resources */,
+				CDF7D3E3176FA6BB001DDC00 /* RadarLoop.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
