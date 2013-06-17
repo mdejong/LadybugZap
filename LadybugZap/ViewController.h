@@ -10,4 +10,6 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIImageView *ladybugImageView;
+
 @end
