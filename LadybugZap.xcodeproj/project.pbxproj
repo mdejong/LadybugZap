@@ -22,6 +22,7 @@
 		CDF7D3E1176FA6BB001DDC00 /* Ladybug.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3DE176FA6BB001DDC00 /* Ladybug.png */; };
 		CDF7D3E2176FA6BB001DDC00 /* LadybugZap.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3DF176FA6BB001DDC00 /* LadybugZap.png */; };
 		CDF7D3E3176FA6BB001DDC00 /* RadarLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */; };
+		CDF7D3E5176FACCB001DDC00 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D3E4176FACCB001DDC00 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CDF7D3DE176FA6BB001DDC00 /* Ladybug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ladybug.png; sourceTree = "<group>"; };
 		CDF7D3DF176FA6BB001DDC00 /* LadybugZap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LadybugZap.png; sourceTree = "<group>"; };
 		CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RadarLoop.gif; sourceTree = "<group>"; };
+		CDF7D3E4176FACCB001DDC00 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF7D3E5176FACCB001DDC00 /* QuartzCore.framework in Frameworks */,
 				CDF7D3B9176FA644001DDC00 /* UIKit.framework in Frameworks */,
 				CDF7D3BB176FA644001DDC00 /* Foundation.framework in Frameworks */,
 				CDF7D3BD176FA644001DDC00 /* CoreGraphics.framework in Frameworks */,
@@ -81,6 +84,7 @@
 		CDF7D3B7176FA644001DDC00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDF7D3E4176FACCB001DDC00 /* QuartzCore.framework */,
 				CDF7D3B8176FA644001DDC00 /* UIKit.framework */,
 				CDF7D3BA176FA644001DDC00 /* Foundation.framework */,
 				CDF7D3BC176FA644001DDC00 /* CoreGraphics.framework */,
