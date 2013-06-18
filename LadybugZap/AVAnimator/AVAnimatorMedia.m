@@ -583,7 +583,7 @@
   // Implicitly rewind before playing, this basically just deallocates any previous
   // play resources in the frame decoder.
   
-  [self rewind];  
+  [self rewind];
   
 	// Can only transition from PAUSED to ANIMATING via unpause
   
@@ -841,7 +841,18 @@
 
 - (void) rewind
 {
-	[self stopAnimator];
+  // There is no point in calling stopAnimator if the animator has never been started
+  // before doing a rewind. Also, callback code could attempt to start attach and
+  // then start an animator in a stop action of the currently playing animator and
+  // in that case starting an animator should not emit a stop notification since
+  // the animator is not actually running.
+  
+  if (self.state <= READY) {
+    // Do not invoke stopAnimator since media has not been played yet
+  } else {
+    [self stopAnimator];
+  }
+  
   self.currentFrame = -1;
   [self.frameDecoder rewind];
 }
@@ -1321,7 +1332,7 @@
   
 	if (nextImage != currentImage) {
 		self.prevFrame = currentImage;
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__clang__)
 		[self.renderer setImage:nextImage];
 #else
 		self.renderer.image = nextImage;
@@ -1516,7 +1527,7 @@
     UIImage *finalFrameCopy = frame.image;
     resultImage = finalFrameCopy;
   }
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__clang__)
   [self.renderer setImage:resultImage];
 #else
   self.renderer.image = resultImage;
@@ -1534,6 +1545,46 @@
   // The view and the media objects should have dropped all references to frame buffer objects now.
   
   [self.frameDecoder releaseDecodeResources];
+}
+
+- (NSString*) description
+{
+  NSString *stateStr;
+  
+  AVAnimatorPlayerState state = self.state;
+  switch (state) {
+    case ALLOCATED:
+      stateStr = @"ALLOCATED";
+      break;
+    case LOADED:
+      stateStr = @"LOADED";
+      break;
+    case FAILED:
+      stateStr = @"FAILED";
+      break;
+    case PREPPING:
+      stateStr = @"PREPPING";
+      break;
+    case READY:
+      stateStr = @"READY";
+      break;
+    case ANIMATING:
+      stateStr = @"ANIMATING";
+      break;
+    case STOPPED:
+      stateStr = @"STOPPED";
+      break;
+    case PAUSED:
+      stateStr = @"PAUSED";
+      break;
+    default:
+      NSAssert(FALSE, @"unmatched state %d", state);
+  }
+  
+  return [NSString stringWithFormat:@"AVAnimatorMedia %p, state %@, loader %@, decoder %@",
+          self,
+          stateStr,
+          self.resourceLoader, self.frameDecoder];
 }
 
 @end

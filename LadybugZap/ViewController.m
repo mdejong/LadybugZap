@@ -20,6 +20,8 @@
 #import "AVGIF89A2MvidResourceLoader.h"
 #import "AV7zAppResourceLoader.h"
 
+#define FRAMERATE 0.1
+
 @interface ViewController ()
 
 @property (nonatomic, retain) NSTimer *startupTimer;
@@ -129,7 +131,7 @@
     media.resourceLoader = resLoader;
     media.frameDecoder = [AVMvidFrameDecoder aVMvidFrameDecoder];
     
-    media.animatorFrameDuration = 0.1;
+    media.animatorFrameDuration = FRAMERATE;
    
     media.animatorRepeatCount = INT_MAX;
     
@@ -179,7 +181,7 @@
     media.resourceLoader = resLoader;
     media.frameDecoder = [AVMvidFrameDecoder aVMvidFrameDecoder];
     
-    media.animatorFrameDuration = 0.1;
+    media.animatorFrameDuration = FRAMERATE;
     
     media.animatorRepeatCount = INT_MAX;
     
@@ -219,7 +221,7 @@
     media.resourceLoader = resLoader;
     media.frameDecoder = [AVMvidFrameDecoder aVMvidFrameDecoder];
     
-    media.animatorFrameDuration = 0.1;
+    media.animatorFrameDuration = FRAMERATE;
     
     // The Zap animation does not loop, it plays once and then the normal loop is played again
     
@@ -239,6 +241,14 @@
                                            selector:@selector(animatorPreparedNotification:)
                                                name:AVAnimatorPreparedToAnimateNotification
                                              object:self.ladybugZapAnimatorMedia];
+
+  // Setup Notification that will be delivered when an animation stops. This notification
+  // is delivered when a single animation cycle ends or when a loop ends.
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(animatorDidStopNotification:)
+                                               name:AVAnimatorDidStopNotification
+                                             object:nil];
   
   return;
 }
@@ -255,14 +265,14 @@
     // Ready to start background loop, kick off a timer that will fire each time the radar
     // beam hits the ladybug, that is 3 frames in and then every 12 frames after that.
     
-    self.bugZapTimer = [NSTimer timerWithTimeInterval: 0.1 * 3
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 3
                                                 target: self
                                               selector: @selector(bugZapTimer:)
                                               userInfo: NULL
                                                repeats: FALSE];
     
     [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
-  } else if (media == self.self.ladybugZapAnimatorMedia) {
+  } else if (media == self.ladybugZapAnimatorMedia) {
     // Nop
   }
   
@@ -273,16 +283,19 @@
 {
   // Display bug zap loop by setting the zap media to render to the AVAnimatorLayer
   
-  [self.ladybugAnimatorLayer attachMedia:self.ladybugZapAnimatorMedia];
+  AVAnimatorMedia *media = self.ladybugZapAnimatorMedia;
   
-  [self.ladybugZapAnimatorMedia startAnimator];
+  if (media.isReadyToAnimate) {
+    [self.ladybugAnimatorLayer attachMedia:media];
+    [media startAnimator];
+  }
   
   if (self.loopingBugZapTimer) {
     return;
   } else {
     self.loopingBugZapTimer = TRUE;
     
-    self.bugZapTimer = [NSTimer timerWithTimeInterval: 0.1 * 12
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 12
                                                target: self
                                              selector: @selector(bugZapTimer:)
                                              userInfo: NULL
@@ -290,6 +303,26 @@
     
     [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
   }
+}
+
+- (void) animatorDidStopNotification:(NSNotification*)notification
+{
+  AVAnimatorMedia *media = notification.object;
+  
+  if (media == self.backgroundAnimatorMedia) {
+    // Each time the background animation stops, kick off a new timer
+    return;
+  } else if (media == self.ladybugZapAnimatorMedia) {
+    AVAnimatorMedia *ladybugAnimatorMedia = self.ladybugAnimatorMedia;
+    
+    [self.ladybugAnimatorLayer attachMedia:ladybugAnimatorMedia];
+    
+    [ladybugAnimatorMedia startAnimator];
+    
+    return;
+  }
+  
+  return;
 }
 
 @end
