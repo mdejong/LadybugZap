@@ -318,10 +318,18 @@
 
 // The bug jumps when this callback is invoked. This animation is implemented with
 // a simple CoreAnimation scale increase to make it look like the bug jumps over the beam.
+// The CATransaction is needed to stop the walk cycle animation while scaling, since
+// this makes the bug's less less blurry.
 
 - (void) bugJumpTimer:(NSTimer*)timer
 {
   CALayer *layer = self.ladybugLayer;
+  
+  AVAnimatorMedia *ladybugAnimatorMedia = self.ladybugAnimatorMedia;
+  
+  [ladybugAnimatorMedia stopAnimator];
+  
+  [CATransaction begin];
   
   CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
   
@@ -332,7 +340,13 @@
   animation.fromValue = [NSNumber numberWithFloat:1.0];
   animation.toValue = [NSNumber numberWithFloat:2.5];
   
+  [CATransaction setCompletionBlock:^{
+    [ladybugAnimatorMedia startAnimator];
+  }];
+  
   [layer addAnimation:animation forKey:@"scaling"];
+  
+  [CATransaction commit];
 }
 
 // The bug is hit by the bean when this callback is invoked
