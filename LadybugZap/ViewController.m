@@ -36,6 +36,8 @@
 
 @property (nonatomic, retain) AVAnimatorMedia *ladybugAnimatorMedia;
 
+@property (nonatomic, retain) AVAnimatorMedia *ladybugZapAnimatorMedia;
+
 @end
 
 @implementation ViewController
@@ -178,7 +180,7 @@
     
     media.animatorRepeatCount = INT_MAX;
     
-    self.backgroundAnimatorMedia = media;
+    self.ladybugAnimatorMedia = media;
     
     // Create AVAnimatorLayer object, this object acts as a bridge between the AVAnimator
     // media object and the CALayer which exists in the view heir. This object must retain
@@ -193,6 +195,50 @@
     [media startAnimator];
   }
   
+  // The Zap animation loop will be displayed when the bug is hit by the radar. It does not
+  // play automatically, simply wait until it is ready before actually showing the zap animation.
+  // Since the zap animation will make use of the self.ladybugAnimatorLayer to render, we
+  // only need to attach it to the existing object.
+ 
+  {
+    resFilename = @"LadybugGrayGlow.mvid.7z";
+    tmpFilename = @"LadybugGrayGlow.mvid";
+    tmpPath = [AVFileUtil getTmpDirPath:tmpFilename];
+    
+    AV7zAppResourceLoader *resLoader = [AV7zAppResourceLoader aV7zAppResourceLoader];
+    resLoader.archiveFilename = resFilename;
+    resLoader.movieFilename = tmpFilename;
+    resLoader.outPath = tmpPath;
+    
+    // Create Media object
+    
+    media = [AVAnimatorMedia aVAnimatorMedia];
+    media.resourceLoader = resLoader;
+    media.frameDecoder = [AVMvidFrameDecoder aVMvidFrameDecoder];
+    
+    media.animatorFrameDuration = 0.1;
+    
+    // The Zap animation does not loop, it plays once and then the normal loop is played again
+    
+    self.ladybugZapAnimatorMedia = media;
+    
+    [media prepareToAnimate];
+    
+    // Setup callback that will be invoked once media is ready
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(animatorPreparedLadybugZapNotification:)
+                                                 name:AVAnimatorPreparedToAnimateNotification
+                                               object:media];
+
+  }
+  
+  return;
+}
+
+- (void) animatorPreparedLadybugZapNotification:(NSNotification*)notification
+{
+  return;
 }
 
 @end
