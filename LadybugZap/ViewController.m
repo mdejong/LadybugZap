@@ -27,7 +27,6 @@
 @property (nonatomic, retain) NSTimer *startupTimer;
 
 @property (nonatomic, retain) NSTimer *bugZapTimer;
-@property (nonatomic, assign) BOOL loopingBugZapTimer;
 
 // Will replace backgroundImageView once media is loaded and ready to play
 
@@ -242,6 +241,13 @@
                                                name:AVAnimatorPreparedToAnimateNotification
                                              object:self.ladybugZapAnimatorMedia];
 
+  // Setup Notification that will be delivered when an animation starts.
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(animatorDidStartNotification:)
+                                               name:AVAnimatorDidStartNotification
+                                             object:self.backgroundAnimatorMedia];
+  
   // Setup Notification that will be delivered when an animation stops. This notification
   // is delivered when a single animation cycle ends or when a loop ends.
 
@@ -262,18 +268,31 @@
                                                 object:media];
   
   if (media == self.backgroundAnimatorMedia) {
-    // Ready to start background loop, kick off a timer that will fire each time the radar
-    // beam hits the ladybug, that is 3 frames in and then every 12 frames after that.
-    
-    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 3
-                                                target: self
-                                              selector: @selector(bugZapTimer:)
-                                              userInfo: NULL
-                                               repeats: FALSE];
-    
-    [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
   } else if (media == self.ladybugZapAnimatorMedia) {
     // Nop
+  }
+  
+  return;
+}
+
+// This notification is delivered each time an animation loop is started.
+
+- (void) animatorDidStartNotification:(NSNotification*)notification
+{
+  AVAnimatorMedia *media = notification.object;
+  
+  if (media == self.backgroundAnimatorMedia) {
+    // When the background animation begins, setup a non-repeating timer that will
+    // kick off a bug zap animation at the right time
+    
+    [self.bugZapTimer invalidate];
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 3
+                                               target: self
+                                             selector: @selector(bugZapTimer:)
+                                             userInfo: NULL
+                                              repeats: FALSE];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
   }
   
   return;
@@ -288,21 +307,7 @@
   if (media.isReadyToAnimate) {
     [self.ladybugAnimatorLayer attachMedia:media];
     [media startAnimator];
-  }
-  
-  if (self.loopingBugZapTimer) {
-    return;
-  } else {
-    self.loopingBugZapTimer = TRUE;
-    
-    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 12
-                                               target: self
-                                             selector: @selector(bugZapTimer:)
-                                             userInfo: NULL
-                                              repeats: TRUE];
-    
-    [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
-  }
+  }  
 }
 
 - (void) animatorDidStopNotification:(NSNotification*)notification
@@ -310,16 +315,15 @@
   AVAnimatorMedia *media = notification.object;
   
   if (media == self.backgroundAnimatorMedia) {
-    // Each time the background animation stops, kick off a new timer
-    return;
+    // Nop
   } else if (media == self.ladybugZapAnimatorMedia) {
+    // When the zap animation is completed, start the walk cycle again
+    
     AVAnimatorMedia *ladybugAnimatorMedia = self.ladybugAnimatorMedia;
     
     [self.ladybugAnimatorLayer attachMedia:ladybugAnimatorMedia];
     
     [ladybugAnimatorMedia startAnimator];
-    
-    return;
   }
   
   return;
