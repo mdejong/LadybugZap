@@ -24,6 +24,9 @@
 
 @property (nonatomic, retain) NSTimer *startupTimer;
 
+@property (nonatomic, retain) NSTimer *bugZapTimer;
+@property (nonatomic, assign) BOOL loopingBugZapTimer;
+
 // Will replace backgroundImageView once media is loaded and ready to play
 
 @property (nonatomic, retain) AVAnimatorView *backgroundAnimatorView;
@@ -223,22 +226,70 @@
     self.ladybugZapAnimatorMedia = media;
     
     [media prepareToAnimate];
-    
-    // Setup callback that will be invoked once media is ready
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(animatorPreparedLadybugZapNotification:)
-                                                 name:AVAnimatorPreparedToAnimateNotification
-                                               object:media];
+  }
+  
+  // This callback will be invoked once for the two kinds of media ready notifications.
 
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(animatorPreparedNotification:)
+                                               name:AVAnimatorPreparedToAnimateNotification
+                                             object:self.backgroundAnimatorMedia];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(animatorPreparedNotification:)
+                                               name:AVAnimatorPreparedToAnimateNotification
+                                             object:self.ladybugZapAnimatorMedia];
+  
+  return;
+}
+
+- (void) animatorPreparedNotification:(NSNotification*)notification
+{
+  AVAnimatorMedia *media = notification.object;
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:AVAnimatorPreparedToAnimateNotification
+                                                object:media];
+  
+  if (media == self.backgroundAnimatorMedia) {
+    // Ready to start background loop, kick off a timer that will fire each time the radar
+    // beam hits the ladybug, that is 3 frames in and then every 12 frames after that.
+    
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: 0.1 * 3
+                                                target: self
+                                              selector: @selector(bugZapTimer:)
+                                              userInfo: NULL
+                                               repeats: FALSE];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
+  } else if (media == self.self.ladybugZapAnimatorMedia) {
+    // Nop
   }
   
   return;
 }
 
-- (void) animatorPreparedLadybugZapNotification:(NSNotification*)notification
+- (void) bugZapTimer:(NSTimer*)timer
 {
-  return;
+  // Display bug zap loop by setting the zap media to render to the AVAnimatorLayer
+  
+  [self.ladybugAnimatorLayer attachMedia:self.ladybugZapAnimatorMedia];
+  
+  [self.ladybugZapAnimatorMedia startAnimator];
+  
+  if (self.loopingBugZapTimer) {
+    return;
+  } else {
+    self.loopingBugZapTimer = TRUE;
+    
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: 0.1 * 12
+                                               target: self
+                                             selector: @selector(bugZapTimer:)
+                                             userInfo: NULL
+                                              repeats: TRUE];
+    
+    [[NSRunLoop currentRunLoop] addTimer:self.bugZapTimer forMode: NSDefaultRunLoopMode];
+  }
 }
 
 @end
