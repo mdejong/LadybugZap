@@ -42,6 +42,8 @@
 
 @property (nonatomic, retain) AVAnimatorMedia *ladybugZapAnimatorMedia;
 
+@property (nonatomic, assign) int bugBounceCounter;
+
 @end
 
 @implementation ViewController
@@ -285,10 +287,26 @@
     // When the background animation begins, setup a non-repeating timer that will
     // kick off a bug zap animation at the right time
     
+    int boundCounter = self.bugBounceCounter % 3;
+    self.bugBounceCounter = self.bugBounceCounter + 1;
+    
+    SEL aSelector = @selector(bugZapTimer:);
+    float delay = FRAMERATE * 3;
+    
+    if (boundCounter <= 1) {
+      // On 1st and 2nd iteration, bug jumps over the beam
+      aSelector = @selector(bugJumpTimer:);
+      delay = FRAMERATE * 2;
+    } else {
+      // On the 3rd iteration, the green beam hits the bug
+      aSelector = @selector(bugZapTimer:);
+      delay = FRAMERATE * 3;
+    }
+    
     [self.bugZapTimer invalidate];
-    self.bugZapTimer = [NSTimer timerWithTimeInterval: FRAMERATE * 3
+    self.bugZapTimer = [NSTimer timerWithTimeInterval: delay
                                                target: self
-                                             selector: @selector(bugZapTimer:)
+                                             selector: aSelector
                                              userInfo: NULL
                                               repeats: FALSE];
     
@@ -297,6 +315,27 @@
   
   return;
 }
+
+// The bug jumps when this callback is invoked. This animation is implemented with
+// a simple CoreAnimation scale increase to make it look like the bug jumps over the beam.
+
+- (void) bugJumpTimer:(NSTimer*)timer
+{
+  CALayer *layer = self.ladybugLayer;
+  
+  CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+  
+  animation.autoreverses = YES;
+  animation.duration = FRAMERATE * 3;
+  animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+  
+  animation.fromValue = [NSNumber numberWithFloat:1.0];
+  animation.toValue = [NSNumber numberWithFloat:2.5];
+  
+  [layer addAnimation:animation forKey:@"scaling"];
+}
+
+// The bug is hit by the bean when this callback is invoked
 
 - (void) bugZapTimer:(NSTimer*)timer
 {
