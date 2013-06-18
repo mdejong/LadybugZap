@@ -240,7 +240,6 @@
 		CDF7D3A9176FA644001DDC00 = {
 			isa = PBXGroup;
 			children = (
-				CDF7D484176FF43D001DDC00 /* libz.dylib */,
 				CDF7D3BE176FA644001DDC00 /* LadybugZap */,
 				CDF7D3B7176FA644001DDC00 /* Frameworks */,
 				CDF7D3B5176FA644001DDC00 /* Products */,
@@ -258,6 +257,7 @@
 		CDF7D3B7176FA644001DDC00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDF7D484176FF43D001DDC00 /* libz.dylib */,
 				CDF7D493176FF5F4001DDC00 /* CoreMedia.framework */,
 				CDF7D491176FF5DC001DDC00 /* AVFoundation.framework */,
 				CDF7D48C176FF45F001DDC00 /* AssetsLibrary.framework */,
@@ -638,7 +638,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_CFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -686,6 +686,7 @@
 				CDF7D3DD176FA644001DDC00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
