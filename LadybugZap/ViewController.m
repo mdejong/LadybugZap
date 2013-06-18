@@ -18,6 +18,7 @@
 #import "AVMvidFrameDecoder.h"
 
 #import "AVGIF89A2MvidResourceLoader.h"
+#import "AV7zAppResourceLoader.h"
 
 @interface ViewController ()
 
@@ -28,6 +29,8 @@
 @property (nonatomic, retain) AVAnimatorView *backgroundAnimatorView;
 
 @property (nonatomic, retain) AVAnimatorMedia *backgroundAnimatorMedia;
+
+@property (nonatomic, retain) CALayer *ladybugLayer;
 
 @property (nonatomic, retain) AVAnimatorLayer *ladybugAnimatorLayer;
 
@@ -58,6 +61,8 @@
   ladybugLayer.frame = frame;
   UIImage *image = self.ladybugImageView.image;
   ladybugLayer.contents = (id) image.CGImage;
+  
+  self.ladybugLayer = ladybugLayer;
   
   [self.view.layer addSublayer:ladybugLayer];
   
@@ -147,6 +152,43 @@
     // is ready.
     
     [self.backgroundAnimatorView attachMedia:media];
+    
+    [media startAnimator];
+  }
+  
+  // Load media that show the ladybug walking in a loop, it will play in a loop when ready
+  
+  {
+    resFilename = @"LadybugGray.mvid.7z";
+    tmpFilename = @"LadybugGray.mvid";
+    tmpPath = [AVFileUtil getTmpDirPath:tmpFilename];
+    
+    AV7zAppResourceLoader *resLoader = [AV7zAppResourceLoader aV7zAppResourceLoader];
+    resLoader.archiveFilename = resFilename;
+    resLoader.movieFilename = tmpFilename;
+    resLoader.outPath = tmpPath;
+    
+    // Create Media object
+    
+    media = [AVAnimatorMedia aVAnimatorMedia];
+    media.resourceLoader = resLoader;
+    media.frameDecoder = [AVMvidFrameDecoder aVMvidFrameDecoder];
+    
+    media.animatorFrameDuration = 0.1;
+    
+    media.animatorRepeatCount = INT_MAX;
+    
+    self.backgroundAnimatorMedia = media;
+    
+    // Create AVAnimatorLayer object, this object acts as a bridge between the AVAnimator
+    // media object and the CALayer which exists in the view heir. This object must retain
+    // the ladybugAnimatorLayer since there is no direct ref held by the CALayer.
+    
+    self.ladybugAnimatorLayer = [AVAnimatorLayer aVAnimatorLayer:self.ladybugLayer];
+    
+    // This media starts to animate right away, to show the bug walking.
+    
+    [self.ladybugAnimatorLayer attachMedia:media];
     
     [media startAnimator];
   }
