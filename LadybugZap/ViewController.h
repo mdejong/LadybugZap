@@ -10,6 +10,12 @@
 
 @interface ViewController : UIViewController
 
+// backgroundImageView will be set in the NIB, it will be replaced with
+// a AVAnimatorView once background media is finished loading just to
+// keep things simple.
+
+@property (nonatomic, retain) IBOutlet UIImageView *backgroundImageView;
+
 @property (nonatomic, retain) IBOutlet UIImageView *ladybugImageView;
 
 @end

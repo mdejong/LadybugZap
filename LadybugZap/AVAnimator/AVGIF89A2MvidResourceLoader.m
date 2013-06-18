@@ -117,7 +117,7 @@
     NSData *imageData = [NSData dataWithContentsOfFile:resPath];
     if (imageData == nil) {
       // Data could not be loaded
-      NSAssert(retcode == 0, @"image data could not be loaded from %@", resPath);
+      NSAssert(FALSE, @"image data could not be loaded from %@", resPath);
     }
 
     retcode = [self convertToMaxvid:imageData outMaxvidPath:phonyOutPath genAdler:genAdler];
