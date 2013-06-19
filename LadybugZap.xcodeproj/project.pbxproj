@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDD1504517713D520035F0E0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1504417713D520035F0E0 /* Icon.png */; };
 		CDF7D3B9176FA644001DDC00 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D3B8176FA644001DDC00 /* UIKit.framework */; };
 		CDF7D3BB176FA644001DDC00 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D3BA176FA644001DDC00 /* Foundation.framework */; };
 		CDF7D3BD176FA644001DDC00 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D3BC176FA644001DDC00 /* CoreGraphics.framework */; };
@@ -83,6 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CDD1504417713D520035F0E0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		CDF7D3B4176FA644001DDC00 /* LadybugZap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LadybugZap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF7D3B8176FA644001DDC00 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF7D3BA176FA644001DDC00 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -293,6 +295,7 @@
 		CDF7D3BF176FA644001DDC00 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDD1504417713D520035F0E0 /* Icon.png */,
 				CDF7D3E6176FF2FD001DDC00 /* LadybugGray.mvid.7z */,
 				CDF7D3E7176FF2FD001DDC00 /* LadybugGrayGlow.mvid.7z */,
 				CDF7D3E0176FA6BB001DDC00 /* RadarLoop.gif */,
@@ -498,6 +501,7 @@
 				CDF7D3E3176FA6BB001DDC00 /* RadarLoop.gif in Resources */,
 				CDF7D3E8176FF2FD001DDC00 /* LadybugGray.mvid.7z in Resources */,
 				CDF7D3E9176FF2FD001DDC00 /* LadybugGrayGlow.mvid.7z in Resources */,
+				CDD1504517713D520035F0E0 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
