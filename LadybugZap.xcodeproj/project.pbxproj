@@ -73,7 +73,7 @@
 		CDF7D47D176FF3F9001DDC00 /* maxvid_encode.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45C176FF3F9001DDC00 /* maxvid_encode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D47E176FF3F9001DDC00 /* maxvid_file.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45D176FF3F9001DDC00 /* maxvid_file.c */; };
 		CDF7D47F176FF3F9001DDC00 /* movdata.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45F176FF3F9001DDC00 /* movdata.c */; };
-		CDF7D480176FF3F9001DDC00 /* SegmentedMappedData.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D462176FF3F9001DDC00 /* SegmentedMappedData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D480176FF3F9001DDC00 /* SegmentedMappedData.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D462176FF3F9001DDC00 /* SegmentedMappedData.m */; };
 		CDF7D483176FF403001DDC00 /* AutoPropertyRelease.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D482176FF403001DDC00 /* AutoPropertyRelease.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D485176FF43D001DDC00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D484176FF43D001DDC00 /* libz.dylib */; };
 		CDF7D487176FF444001DDC00 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D486176FF444001DDC00 /* AudioToolbox.framework */; };
