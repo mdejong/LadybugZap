@@ -44,14 +44,14 @@
 		CDF7D418176FF3F1001DDC00 /* Delta.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D3F9176FF3F1001DDC00 /* Delta.c */; };
 		CDF7D419176FF3F1001DDC00 /* Lzma2Dec.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D3FC176FF3F1001DDC00 /* Lzma2Dec.c */; };
 		CDF7D41A176FF3F1001DDC00 /* LzmaDec.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D3FE176FF3F1001DDC00 /* LzmaDec.c */; };
-		CDF7D41B176FF3F1001DDC00 /* LZMAExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D401176FF3F1001DDC00 /* LZMAExtractor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D41B176FF3F1001DDC00 /* LZMAExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D401176FF3F1001DDC00 /* LZMAExtractor.m */; };
 		CDF7D41C176FF3F1001DDC00 /* Ppmd7.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D403176FF3F1001DDC00 /* Ppmd7.c */; };
 		CDF7D41D176FF3F1001DDC00 /* Ppmd7Dec.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D405176FF3F1001DDC00 /* Ppmd7Dec.c */; };
 		CDF7D41E176FF3F1001DDC00 /* Ppmd8.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D406176FF3F1001DDC00 /* Ppmd8.c */; };
 		CDF7D41F176FF3F1001DDC00 /* Ppmd8Dec.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D408176FF3F1001DDC00 /* Ppmd8Dec.c */; };
 		CDF7D420176FF3F1001DDC00 /* 7zAlloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D40D176FF3F1001DDC00 /* 7zAlloc.c */; };
 		CDF7D421176FF3F1001DDC00 /* 7zMain.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D40F176FF3F1001DDC00 /* 7zMain.c */; };
-		CDF7D463176FF3F9001DDC00 /* ApngConvertMaxvid.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D424176FF3F9001DDC00 /* ApngConvertMaxvid.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D463176FF3F9001DDC00 /* ApngConvertMaxvid.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D424176FF3F9001DDC00 /* ApngConvertMaxvid.m */; };
 		CDF7D464176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D426176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D465176FF3F9001DDC00 /* AV7zAppResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D428176FF3F9001DDC00 /* AV7zAppResourceLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D466176FF3F9001DDC00 /* AVAnimatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42A176FF3F9001DDC00 /* AVAnimatorLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
