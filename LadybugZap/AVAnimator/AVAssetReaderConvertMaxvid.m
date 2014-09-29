@@ -11,11 +11,16 @@
 
 #if defined(HAS_AVASSET_CONVERT_MAXVID)
 
+#import "AVFrame.h"
+
 #import "AVAssetFrameDecoder.h"
 
 #import "CGFrameBuffer.h"
 
+#if __has_feature(objc_arc)
+#else
 #import "AutoPropertyRelease.h"
+#endif // objc_arc
 
 //#define LOGGING
 
@@ -37,14 +42,21 @@ NSString * const AVAssetReaderConvertMaxvidCompletedNotification = @"AVAssetRead
 
 - (void) dealloc
 {
+#if __has_feature(objc_arc)
+#else
   [AutoPropertyRelease releaseProperties:self thisClass:AVAssetReaderConvertMaxvid.class];
   [super dealloc];
+#endif // objc_arc
 }
 
 + (AVAssetReaderConvertMaxvid*) aVAssetReaderConvertMaxvid
 {
   AVAssetReaderConvertMaxvid *obj = [[AVAssetReaderConvertMaxvid alloc] init];
+#if __has_feature(objc_arc)
+  return obj;
+#else
   return [obj autorelease];
+#endif // objc_arc
 }
 
 // This utility method will setup the asset so that it is opened and ready
@@ -87,7 +99,7 @@ NSString * const AVAssetReaderConvertMaxvidCompletedNotification = @"AVAssetRead
   // is padded in the case of an odd number of pixels, pass the buffer size
   // including the padding pixels.
   
-  int bufferSize = frameBuffer.numBytes;
+  int bufferSize  = (int) frameBuffer.numBytes;
   void *pixelsPtr = frameBuffer.pixels;
   
   // write entire buffer of raw 32bit pixels to the file.
@@ -116,7 +128,7 @@ NSString * const AVAssetReaderConvertMaxvidCompletedNotification = @"AVAssetRead
   
   AVAssetFrameDecoder *frameDecoder = self.frameDecoder;
   
-  self.totalNumFrames = frameDecoder.numFrames;
+  self.totalNumFrames = (int) frameDecoder.numFrames;
   self.frameDuration = frameDecoder.frameDuration;
   self.movieSize = CGSizeMake(frameDecoder.width, frameDecoder.height);
   self.bpp = 24;
@@ -130,11 +142,9 @@ NSString * const AVAssetReaderConvertMaxvidCompletedNotification = @"AVAssetRead
   BOOL writeFailed = FALSE;
 
   int frameIndex;
-  int numFrames = frameDecoder.numFrames;
+  int numFrames = (int) frameDecoder.numFrames;
   
-  for (frameIndex = 0; (frameIndex < numFrames) && (writeFailed == FALSE); frameIndex++) {
-    NSAutoreleasePool *inner_pool = [[NSAutoreleasePool alloc] init];
-    
+  for (frameIndex = 0; (frameIndex < numFrames) && (writeFailed == FALSE); frameIndex++) @autoreleasepool {
     AVFrame *frame = [frameDecoder advanceToFrame:frameIndex];
     
     if (frame.isDuplicate) {
@@ -146,8 +156,6 @@ NSString * const AVAssetReaderConvertMaxvidCompletedNotification = @"AVAssetRead
         writeFailed = TRUE;
       }
     }
-    
-    [inner_pool drain];
   }
 
   if (writeFailed == FALSE) {
@@ -209,7 +217,7 @@ retcode:
 // Secondary thread entry point for non blocking operation
 
 - (void) nonblockingDecodeEntryPoint {  
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  @autoreleasepool {
   
   [self blockingDecode];
   
@@ -219,7 +227,8 @@ retcode:
   
   [self performSelectorOnMainThread:@selector(notifyDecodingDoneInMainThread) withObject:nil waitUntilDone:TRUE];
   
-  [pool drain];
+  }
+  
   return;
 }
 

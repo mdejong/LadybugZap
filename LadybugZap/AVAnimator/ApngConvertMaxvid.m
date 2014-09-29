@@ -228,7 +228,7 @@ goto retcode; \
   if (status != 0) {
     RETCODE(READ_ERROR);
   }
-  uint32_t endOffset = ftell(fp);
+  uint32_t endOffset = (uint32_t) ftell(fp);
 #ifdef DEBUG_PRINT_FRAME_DURATION
   printf("file length %d\n", (int)ftell(fp));
 #endif
@@ -567,9 +567,9 @@ retcode:
                outMaxvidPath:(NSString*)outMaxvidPath
                     genAdler:(BOOL)genAdler
 {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  
   uint32_t retcode = 0;
+  
+  @autoreleasepool {
   
   FILE *inAPNGFile = NULL;
   
@@ -664,7 +664,7 @@ retcode:
   
   [aVMvidFileWriter close];
   
-  [pool drain];
+  }
   
 	return retcode;
 }

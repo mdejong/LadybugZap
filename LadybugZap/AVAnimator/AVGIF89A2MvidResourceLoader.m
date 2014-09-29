@@ -48,13 +48,22 @@
 
 + (AVGIF89A2MvidResourceLoader*) aVGIF89A2MvidResourceLoader
 {
-  return [[[AVGIF89A2MvidResourceLoader alloc] init] autorelease];
+  AVGIF89A2MvidResourceLoader *obj = [[AVGIF89A2MvidResourceLoader alloc] init];
+#if __has_feature(objc_arc)
+  return obj;
+#else
+  return [obj autorelease];
+#endif // objc_arc
 }
 
 - (void) dealloc
 {
   self.outPath = nil;
+  
+#if __has_feature(objc_arc)
+#else
   [super dealloc];
+#endif // objc_arc
 }
 
 // Output movie filename must be redefined
@@ -70,7 +79,7 @@
 #define LOGGING
 
 + (void) decodeThreadEntryPoint:(NSArray*)arr {  
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  @autoreleasepool {
   
   NSAssert([arr count] == 5, @"arr count");
   
@@ -139,7 +148,7 @@
     [self releaseSerialResourceLoaderLock];
   }
   
-  [pool drain];
+  }
 }
 
 - (void) _detachNewThread:(NSString*)resPath
@@ -202,9 +211,9 @@
                outMaxvidPath:(NSString*)outMaxvidPath
                     genAdler:(BOOL)genAdler
 {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  
   uint32_t retcode = 0;
+  
+  @autoreleasepool {
   
   CGFrameBuffer *cgFrameBuffer = nil;
   
@@ -339,9 +348,7 @@ goto retcode; \
   //  detectedBpp = 32;
   //}
   
-  for (int i=0; i < numFrames; i++) {
-    NSAutoreleasePool *inner_pool = [[NSAutoreleasePool alloc] init];
-    
+  for (int i=0; i < numFrames; i++) @autoreleasepool {
     CGImageRef imgRef = CGImageSourceCreateImageAtIndex(srcRef, i, NULL);
     
     // if scan finds no transparent pixels, then detectedBpp = 24
@@ -350,8 +357,8 @@ goto retcode; \
     // the exact binary layout of the GIF image data might be, though it
     // is likely to be a flat array of 32 BPP pixels.
     
-    uint32_t imageWidth = CGImageGetWidth(imgRef);
-    uint32_t imageHeight = CGImageGetHeight(imgRef);
+    uint32_t imageWidth  = (uint32_t) CGImageGetWidth(imgRef);
+    uint32_t imageHeight = (uint32_t) CGImageGetHeight(imgRef);
     
     assert(imageWidth == width);
     assert(imageHeight == height);
@@ -383,13 +390,11 @@ goto retcode; \
     
     // Write the keyframe to the output file
     
-    int numBytesInBuffer = cgFrameBuffer.numBytes;
+    int numBytesInBuffer = (int) cgFrameBuffer.numBytes;
     
     worked = [aVMvidFileWriter writeKeyframe:cgFrameBuffer.pixels bufferSize:numBytesInBuffer];
     
     assert(worked);
-     
-    [inner_pool drain];
   }
   
   // Write .mvid header again, now that info is up to date
@@ -407,7 +412,7 @@ retcode:
   
   [aVMvidFileWriter close];
   
-  [pool drain];
+  }
   
 	return retcode;
 }

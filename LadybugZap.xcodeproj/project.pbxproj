@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD12815219D8E6B800346F49 /* AVAnimatorOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12814C19D8E6B800346F49 /* AVAnimatorOpenGLView.m */; };
+		CD12815319D8E6B800346F49 /* maxvid_deltas.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12814F19D8E6B800346F49 /* maxvid_deltas.m */; };
+		CD12815419D8E6B800346F49 /* MutableAttrString.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12815119D8E6B800346F49 /* MutableAttrString.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD12815619D8E76C00346F49 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815519D8E76C00346F49 /* OpenGLES.framework */; };
+		CD12815819D8E78B00346F49 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815719D8E78B00346F49 /* GLKit.framework */; };
+		CD12815A19D8E7A200346F49 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815919D8E7A200346F49 /* CoreText.framework */; };
+		CD12815C19D8E7C400346F49 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815B19D8E7C400346F49 /* MobileCoreServices.framework */; };
 		CD53CE9E177649E000FD8BFB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53CE9D177649E000FD8BFB /* Icon@2x.png */; };
 		CDD1504517713D520035F0E0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1504417713D520035F0E0 /* Icon.png */; };
 		CDF7D3B9176FA644001DDC00 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF7D3B8176FA644001DDC00 /* UIKit.framework */; };
@@ -69,7 +76,7 @@
 		CDF7D479176FF3F9001DDC00 /* CGFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D455176FF3F9001DDC00 /* CGFrameBuffer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D47A176FF3F9001DDC00 /* libapng.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D456176FF3F9001DDC00 /* libapng.c */; };
 		CDF7D47B176FF3F9001DDC00 /* maxvid_decode.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D458176FF3F9001DDC00 /* maxvid_decode.c */; };
-		CDF7D47C176FF3F9001DDC00 /* maxvid_decode_arm.s in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45A176FF3F9001DDC00 /* maxvid_decode_arm.s */; settings = {COMPILER_FLAGS = "-no-integrated-as"; }; };
+		CDF7D47C176FF3F9001DDC00 /* maxvid_decode_arm.s in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45A176FF3F9001DDC00 /* maxvid_decode_arm.s */; };
 		CDF7D47D176FF3F9001DDC00 /* maxvid_encode.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45C176FF3F9001DDC00 /* maxvid_encode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D47E176FF3F9001DDC00 /* maxvid_file.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45D176FF3F9001DDC00 /* maxvid_file.c */; };
 		CDF7D47F176FF3F9001DDC00 /* movdata.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D45F176FF3F9001DDC00 /* movdata.c */; };
@@ -85,6 +92,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD12814B19D8E6B800346F49 /* AVAnimatorOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAnimatorOpenGLView.h; sourceTree = "<group>"; };
+		CD12814C19D8E6B800346F49 /* AVAnimatorOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAnimatorOpenGLView.m; sourceTree = "<group>"; };
+		CD12814D19D8E6B800346F49 /* AVAnimatorOpenGLViewPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAnimatorOpenGLViewPrivate.h; sourceTree = "<group>"; };
+		CD12814E19D8E6B800346F49 /* maxvid_deltas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxvid_deltas.h; sourceTree = "<group>"; };
+		CD12814F19D8E6B800346F49 /* maxvid_deltas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = maxvid_deltas.m; sourceTree = "<group>"; };
+		CD12815019D8E6B800346F49 /* MutableAttrString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableAttrString.h; sourceTree = "<group>"; };
+		CD12815119D8E6B800346F49 /* MutableAttrString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableAttrString.m; sourceTree = "<group>"; };
+		CD12815519D8E76C00346F49 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CD12815719D8E78B00346F49 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CD12815919D8E7A200346F49 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		CD12815B19D8E7C400346F49 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD53CE9D177649E000FD8BFB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		CDD1504417713D520035F0E0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		CDF7D3B4176FA644001DDC00 /* LadybugZap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LadybugZap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +242,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD12815C19D8E7C400346F49 /* MobileCoreServices.framework in Frameworks */,
+				CD12815A19D8E7A200346F49 /* CoreText.framework in Frameworks */,
+				CD12815819D8E78B00346F49 /* GLKit.framework in Frameworks */,
+				CD12815619D8E76C00346F49 /* OpenGLES.framework in Frameworks */,
 				CDF7D494176FF5F4001DDC00 /* CoreMedia.framework in Frameworks */,
 				CDF7D492176FF5DC001DDC00 /* AVFoundation.framework in Frameworks */,
 				CDF7D48D176FF45F001DDC00 /* AssetsLibrary.framework in Frameworks */,
@@ -261,6 +283,10 @@
 		CDF7D3B7176FA644001DDC00 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD12815B19D8E7C400346F49 /* MobileCoreServices.framework */,
+				CD12815919D8E7A200346F49 /* CoreText.framework */,
+				CD12815719D8E78B00346F49 /* GLKit.framework */,
+				CD12815519D8E76C00346F49 /* OpenGLES.framework */,
 				CDF7D484176FF43D001DDC00 /* libz.dylib */,
 				CDF7D493176FF5F4001DDC00 /* CoreMedia.framework */,
 				CDF7D491176FF5DC001DDC00 /* AVFoundation.framework */,
@@ -391,6 +417,9 @@
 				CDF7D430176FF3F9001DDC00 /* AVAnimatorView.h */,
 				CDF7D431176FF3F9001DDC00 /* AVAnimatorView.m */,
 				CDF7D432176FF3F9001DDC00 /* AVAnimatorViewPrivate.h */,
+				CD12814B19D8E6B800346F49 /* AVAnimatorOpenGLView.h */,
+				CD12814C19D8E6B800346F49 /* AVAnimatorOpenGLView.m */,
+				CD12814D19D8E6B800346F49 /* AVAnimatorOpenGLViewPrivate.h */,
 				CDF7D433176FF3F9001DDC00 /* AVApng2MvidResourceLoader.h */,
 				CDF7D434176FF3F9001DDC00 /* AVApng2MvidResourceLoader.m */,
 				CDF7D435176FF3F9001DDC00 /* AVAppResourceLoader.h */,
@@ -435,10 +464,14 @@
 				CDF7D45C176FF3F9001DDC00 /* maxvid_encode.m */,
 				CDF7D45D176FF3F9001DDC00 /* maxvid_file.c */,
 				CDF7D45E176FF3F9001DDC00 /* maxvid_file.h */,
+				CD12814E19D8E6B800346F49 /* maxvid_deltas.h */,
+				CD12814F19D8E6B800346F49 /* maxvid_deltas.m */,
 				CDF7D45F176FF3F9001DDC00 /* movdata.c */,
 				CDF7D460176FF3F9001DDC00 /* movdata.h */,
 				CDF7D461176FF3F9001DDC00 /* SegmentedMappedData.h */,
 				CDF7D462176FF3F9001DDC00 /* SegmentedMappedData.m */,
+				CD12815019D8E6B800346F49 /* MutableAttrString.h */,
+				CD12815119D8E6B800346F49 /* MutableAttrString.m */,
 			);
 			path = AVAnimator;
 			sourceTree = "<group>";
@@ -568,6 +601,9 @@
 				CDF7D47F176FF3F9001DDC00 /* movdata.c in Sources */,
 				CDF7D480176FF3F9001DDC00 /* SegmentedMappedData.m in Sources */,
 				CDF7D483176FF403001DDC00 /* AutoPropertyRelease.m in Sources */,
+				CD12815219D8E6B800346F49 /* AVAnimatorOpenGLView.m in Sources */,
+				CD12815319D8E6B800346F49 /* maxvid_deltas.m in Sources */,
+				CD12815419D8E6B800346F49 /* MutableAttrString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
