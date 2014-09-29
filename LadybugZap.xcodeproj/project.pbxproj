@@ -52,9 +52,9 @@
 		CDF7D420176FF3F1001DDC00 /* 7zAlloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D40D176FF3F1001DDC00 /* 7zAlloc.c */; };
 		CDF7D421176FF3F1001DDC00 /* 7zMain.c in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D40F176FF3F1001DDC00 /* 7zMain.c */; };
 		CDF7D463176FF3F9001DDC00 /* ApngConvertMaxvid.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D424176FF3F9001DDC00 /* ApngConvertMaxvid.m */; };
-		CDF7D464176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D426176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CDF7D465176FF3F9001DDC00 /* AV7zAppResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D428176FF3F9001DDC00 /* AV7zAppResourceLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CDF7D466176FF3F9001DDC00 /* AVAnimatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42A176FF3F9001DDC00 /* AVAnimatorLayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D464176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D426176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m */; };
+		CDF7D465176FF3F9001DDC00 /* AV7zAppResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D428176FF3F9001DDC00 /* AV7zAppResourceLoader.m */; };
+		CDF7D466176FF3F9001DDC00 /* AVAnimatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42A176FF3F9001DDC00 /* AVAnimatorLayer.m */; };
 		CDF7D467176FF3F9001DDC00 /* AVAnimatorMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42D176FF3F9001DDC00 /* AVAnimatorMedia.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D468176FF3F9001DDC00 /* AVAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D431176FF3F9001DDC00 /* AVAnimatorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDF7D469176FF3F9001DDC00 /* AVApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D434176FF3F9001DDC00 /* AVApng2MvidResourceLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
