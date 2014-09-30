@@ -55,7 +55,7 @@
 		CDF7D464176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D426176FF3F9001DDC00 /* AV7zApng2MvidResourceLoader.m */; };
 		CDF7D465176FF3F9001DDC00 /* AV7zAppResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D428176FF3F9001DDC00 /* AV7zAppResourceLoader.m */; };
 		CDF7D466176FF3F9001DDC00 /* AVAnimatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42A176FF3F9001DDC00 /* AVAnimatorLayer.m */; };
-		CDF7D467176FF3F9001DDC00 /* AVAnimatorMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42D176FF3F9001DDC00 /* AVAnimatorMedia.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D467176FF3F9001DDC00 /* AVAnimatorMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D42D176FF3F9001DDC00 /* AVAnimatorMedia.m */; };
 		CDF7D468176FF3F9001DDC00 /* AVAnimatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D431176FF3F9001DDC00 /* AVAnimatorView.m */; };
 		CDF7D469176FF3F9001DDC00 /* AVApng2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D434176FF3F9001DDC00 /* AVApng2MvidResourceLoader.m */; };
 		CDF7D46A176FF3F9001DDC00 /* AVAppResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D436176FF3F9001DDC00 /* AVAppResourceLoader.m */; };
@@ -65,7 +65,7 @@
 		CDF7D46E176FF3F9001DDC00 /* AVAssetReaderConvertMaxvid.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D43F176FF3F9001DDC00 /* AVAssetReaderConvertMaxvid.m */; };
 		CDF7D46F176FF3F9001DDC00 /* AVAssetWriterConvertFromMaxvid.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D441176FF3F9001DDC00 /* AVAssetWriterConvertFromMaxvid.m */; };
 		CDF7D470176FF3F9001DDC00 /* AVFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D443176FF3F9001DDC00 /* AVFileUtil.m */; };
-		CDF7D471176FF3F9001DDC00 /* AVFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D445176FF3F9001DDC00 /* AVFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDF7D471176FF3F9001DDC00 /* AVFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D445176FF3F9001DDC00 /* AVFrame.m */; };
 		CDF7D472176FF3F9001DDC00 /* AVFrameDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D447176FF3F9001DDC00 /* AVFrameDecoder.m */; };
 		CDF7D473176FF3F9001DDC00 /* AVGIF89A2MvidResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D449176FF3F9001DDC00 /* AVGIF89A2MvidResourceLoader.m */; };
 		CDF7D474176FF3F9001DDC00 /* AVImageFrameDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF7D44B176FF3F9001DDC00 /* AVImageFrameDecoder.m */; };
@@ -411,8 +411,8 @@
 				CDF7D42A176FF3F9001DDC00 /* AVAnimatorLayer.m */,
 				CDF7D42B176FF3F9001DDC00 /* AVAnimatorLayerPrivate.h */,
 				CDF7D42C176FF3F9001DDC00 /* AVAnimatorMedia.h */,
-				CDF7D42D176FF3F9001DDC00 /* AVAnimatorMedia.m */,
 				CDF7D42E176FF3F9001DDC00 /* AVAnimatorMediaPrivate.h */,
+				CDF7D42D176FF3F9001DDC00 /* AVAnimatorMedia.m */,
 				CDF7D42F176FF3F9001DDC00 /* AVAnimatorMediaRendererProtocol.h */,
 				CDF7D430176FF3F9001DDC00 /* AVAnimatorView.h */,
 				CDF7D431176FF3F9001DDC00 /* AVAnimatorView.m */,
