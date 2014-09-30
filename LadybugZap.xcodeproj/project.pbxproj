@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CD12815219D8E6B800346F49 /* AVAnimatorOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12814C19D8E6B800346F49 /* AVAnimatorOpenGLView.m */; };
 		CD12815319D8E6B800346F49 /* maxvid_deltas.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12814F19D8E6B800346F49 /* maxvid_deltas.m */; };
-		CD12815419D8E6B800346F49 /* MutableAttrString.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12815119D8E6B800346F49 /* MutableAttrString.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD12815419D8E6B800346F49 /* MutableAttrString.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12815119D8E6B800346F49 /* MutableAttrString.m */; };
 		CD12815619D8E76C00346F49 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815519D8E76C00346F49 /* OpenGLES.framework */; };
 		CD12815819D8E78B00346F49 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815719D8E78B00346F49 /* GLKit.framework */; };
 		CD12815A19D8E7A200346F49 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12815919D8E7A200346F49 /* CoreText.framework */; };
