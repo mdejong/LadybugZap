@@ -27,7 +27,10 @@
 
 #import "AVFrame.h"
 
+#if __has_feature(objc_arc)
+#else
 #import "AutoPropertyRelease.h"
+#endif // objc_arc
 
 #import "AVMvidFrameDecoder.h"
 
@@ -356,7 +359,10 @@ NSString * const AVAssetWriterConvertFromMaxvidCompletedNotification = @"AVAsset
 #if TARGET_IPHONE_SIMULATOR
   [videoWriter performSelectorOnMainThread:@selector(finishWriting) withObject:nil waitUntilDone:TRUE];
 #else
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
   [videoWriter finishWriting];
+#pragma clang diagnostic pop
 #endif
 }
 

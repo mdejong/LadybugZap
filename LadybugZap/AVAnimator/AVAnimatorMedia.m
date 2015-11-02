@@ -598,7 +598,18 @@
   // Implicitly rewind before playing, this basically just deallocates any previous
   // play resources in the frame decoder.
   
-  [self rewind];
+  BOOL wasNeverStarted = FALSE;
+  
+  if (self.state <= READY) {
+    // Play was never started successfully
+    wasNeverStarted = TRUE;
+  }
+  
+  if (wasNeverStarted) {
+    // No reason to rewind if not actually started yet
+  } else {
+    [self rewind];
+  }
   
 	// Can only transition from PAUSED to ANIMATING via unpause
   
@@ -1058,7 +1069,7 @@
 
 - (void) _animatorDecodeFrameCallback: (NSTimer *)timer {
   if (self.state != ANIMATING) {
-    NSAssert(FALSE, @"state is not ANIMATING");
+    NSAssert(FALSE, @"state is not ANIMATING in _animatorDecodeFrameCallback : %@", [self description]);
   }
   
 	NSTimeInterval currentTime;
@@ -1308,7 +1319,7 @@
 
 - (void) _animatorDisplayFrameCallback: (NSTimer *)timer {
   if (self->m_state != ANIMATING) {
-    NSAssert(FALSE, @"state is not ANIMATING");
+    NSAssert(FALSE, @"state is not ANIMATING in _animatorDisplayFrameCallback : %@", [self description]);
   }
   
 #ifdef DEBUG_OUTPUT
@@ -1332,27 +1343,23 @@
   }
 #endif // DEBUG_OUTPUT
   
-	// Display the "next" frame, this logic does
-	// the minimium amount of work to paint the display
-	// with the contents of a UIImage. No objects are
-	// allocated in this callback and no objects
-	// are released. In the case of a duplicate frame
-	// where the next frame is the exact same data as
-	// the current frame, don't cause a repaint by
-	// changing the AVFrame property.
+	// Display the "next" frame by sending the AVFrame
+	// object to the render target. When a duplicate
+	// frame is found, the render target should take
+	// care to not actually repaint the display.
   
-	AVFrame *currentFrame = self.renderer.AVFrame;
 	AVFrame *nextFrame = self.nextFrame;
 	NSAssert(nextFrame, @"nextFrame");
   
-	if (nextFrame.isDuplicate == FALSE) {
-		self.prevFrame = currentFrame;
+	id<AVAnimatorMediaRendererProtocol> renderer = self.renderer;
+	AVFrame *currentFrame = renderer.AVFrame;
+    
+	self.prevFrame = currentFrame;
 #if defined(__GNUC__) && !defined(__clang__)
-		[self.renderer setAVFrame:nextFrame];
+	[renderer setAVFrame:nextFrame];
 #else
-		self.renderer.AVFrame = nextFrame;
+	renderer.AVFrame = nextFrame;
 #endif
-	}
   
   // Test release of frame now, instead of in next decode callback. Seems
   // that holding until the next decode does not actually release sometimes.
@@ -1443,6 +1450,7 @@
     //		} else {
     //			NSLog([NSString stringWithFormat:@"should have been freed"]);			
     //		}
+        prevFrame = nil;
 	}
   
   // Advance the "current frame" in the movie. In the case where
@@ -1453,12 +1461,17 @@
   
   @autoreleasepool {
   
-  AVFrame *frame = [self.frameDecoder advanceToFrame:nextFrameNum];
+  AVFrameDecoder *decoder = self.frameDecoder;
+      
+  AVFrame *frame = [decoder advanceToFrame:nextFrameNum];
+      
+  //NSLog(@"decoded frame %@", frame);
   
+  self.nextFrame = frame;
+      
   if (frame.isDuplicate == TRUE) {
     wasChanged = FALSE;
   } else {
-    self.nextFrame = frame;
     wasChanged = TRUE;
   }
   }

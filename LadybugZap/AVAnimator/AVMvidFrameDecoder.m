@@ -65,6 +65,8 @@
 @synthesize simulateMemoryMapFailure = m_simulateMemoryMapFailure;
 #endif // REGRESSION_TESTS
 
+@synthesize upgradeFromV1 = m_upgradeFromV1;
+
 - (void) dealloc
 {
   [self close];
@@ -284,7 +286,23 @@
     
     if (worked) {
       uint32_t bpp = hPtr->bpp;
-      NSAssert(bpp == 16 || bpp == 24 || bpp == 32, @"bpp must be 16, 24, 32");
+      if (bpp == 16 || bpp == 24 || bpp == 32) {
+        // nop
+      } else {
+        worked = FALSE;
+        NSAssert(FALSE, @"bpp must be 16, 24, 32");
+      }
+    }
+
+    if (worked) {
+      // Verify the minimum file version, previously version 0 and 1 files
+      // were acceptable but version 2 is now required to support ARM64.
+      // The only exception is the upgrade path where older versions are allowed.
+      
+      if (self.upgradeFromV1 == FALSE && maxvid_file_version(hPtr) < MV_FILE_VERSION_TWO) {
+        worked = FALSE;
+        NSAssert(FALSE, @"only .mvid files version 2 or newer can be used, you must -upgrade this .mvid from version %d", maxvid_file_version(hPtr));
+      }
     }
   }
   
@@ -835,7 +853,7 @@
             NSAssert(FALSE, @"framebuffer num bytes");
           }
         }
-        NSAssert(((uint32_t)inputBuffer32 % MV_PAGESIZE) == 0, @"framebuffer num bytes");
+        NSAssert(((uint32_t)inputBuffer32 % getpagesize()) == 0, @"framebuffer num bytes : pagesize %d : addr %p : addr mod pagesize %d", getpagesize(), inputBuffer32, ((uint32_t)inputBuffer32 % getpagesize()));
 #endif // EXTRA_CHECKS
     
 #if defined(EXTRA_CHECKS) || defined(ALWAYS_CHECK_ADLER)
